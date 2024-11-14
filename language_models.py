@@ -65,7 +65,9 @@ class LLamaV2:
         # if model_type == 'chat':
         #     MODEL = f'meta-llama/Llama-2-{model_size}b-chat-hf'
         # else:
-        MODEL = f'meta-llama/Llama-2-{model_size}b-hf'
+        MODEL = 'Meta-Llama/Llama-Guard-7b'
+            
+            #f'meta-llama/Llama-2-{model_size}b-hf'
         self.model_name = MODEL
         
         self.client = openai.OpenAI(
