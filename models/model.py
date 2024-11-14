@@ -101,7 +101,7 @@ class ModelPipe:
 
 
     def reconstruct_question(self, predicted_answer, inverse_prompt_prefix , temperatures):
-        answer_question_instructions = 'Follow the format below, and please only predict the question that corresponds to the last answer.\n\nOnly output the question, and nothing else.'
+        answer_question_instructions = 'Follow the format below, and please only predict the question that corresponds to the last answer. Only output the question, and nothing else.\n\n'
         answer_question_prompt = answer_question_instructions + inverse_prompt_prefix + 'Answer: ' + predicted_answer + '\n' + 'Question: '
         print(answer_question_prompt)
         
@@ -112,7 +112,7 @@ class ModelPipe:
         # create few shot prompt according to the few shot examples of the dataset
         few_shot_examples = self.few_shot_examples()
         # create instructions for the model
-        question_answer_instructions = 'Follow the format below, and please only predict the answer that corresponds to the last question.\n\n'
+        question_answer_instructions = 'Follow the format below, and please only predict the answer that corresponds to the last question. Only output the question, and nothing else.\n\n'
         # prompt prefix (instructions + few shot examples)
         prompt_prefix = question_answer_instructions + self.create_few_shot_prompt(few_shot_examples)
         # create inverse prompt prefix (instructions + few shot examples) for predicting questions from the answer (reconstruction step)
