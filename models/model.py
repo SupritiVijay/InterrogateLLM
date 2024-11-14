@@ -101,7 +101,7 @@ class ModelPipe:
 
 
     def reconstruct_question(self, predicted_answer, inverse_prompt_prefix , temperatures):
-        answer_question_instructions = 'Follow the format below, and please only predict the question that corresponds to the last answer. Only output the question, and nothing else.\n\n'
+        answer_question_instructions = 'Follow the format below, and only predict the question that corresponds to the last answer. Only output the question, and nothing else.\n\n'
         answer_question_prompt = answer_question_instructions + inverse_prompt_prefix + 'Answer: ' + predicted_answer + '\n' + 'Question: '
         print("answer_question_prompt")
         print(answer_question_prompt)
@@ -115,9 +115,11 @@ class ModelPipe:
         # create few shot prompt according to the few shot examples of the dataset
         few_shot_examples = self.few_shot_examples()
         # create instructions for the model
-        question_answer_instructions = 'Follow the format below, and please only predict the answer that corresponds to the last question. Only output the answer, and nothing else.\n\n'
+        question_answer_instructions = 'Follow the format below, and only predict the answer that corresponds to the last question. \n\n'
         # prompt prefix (instructions + few shot examples)
         prompt_prefix = question_answer_instructions + self.create_few_shot_prompt(few_shot_examples)
+        print("PROMPT_PREFIX")
+        print(prompt_prefix)
         # create inverse prompt prefix (instructions + few shot examples) for predicting questions from the answer (reconstruction step)
         inverse_prompt_prefix = self.create_few_shot_prompt(few_shot_examples, inverse=True)
         print("INVERSE PROMPT PREFIX")
@@ -149,7 +151,7 @@ class ModelPipe:
             
             index += 1
             # add few shot prefix to the question to create the prompt
-            prompt = prompt_prefix + 'Question: ' + question + '\n' + 'Answer: '
+            prompt = prompt_prefix + 'Question: ' + question + '\n' + 'Only provide the answer and nothing else.' + '\n' + 'Answer: '
             # submit the prompt to the model
             response = self.answer_model.submit_request(prompt)
             # remove empty strings from response
