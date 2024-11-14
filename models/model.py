@@ -123,7 +123,7 @@ class ModelPipe:
         # create inverse prompt prefix (instructions + few shot examples) for predicting questions from the answer (reconstruction step)
         inverse_prompt_prefix = self.create_few_shot_prompt(few_shot_examples, inverse=True)
         print("INVERSE PROMPT PREFIX")
-        print(inverse_prompt_prefix, '\n', prompt_prefix)
+        print(inverse_prompt_prefix)
 
         results = []
         index = 0
