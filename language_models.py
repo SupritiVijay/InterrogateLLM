@@ -62,10 +62,10 @@ class LLamaV2:
         print(f'llama model_size: {model_size}, model_type: {model_type}')
         
 
-        if model_type == 'chat':
-            MODEL = f'meta-llama/Llama-2-{model_size}b-chat-hf'
-        else:
-            MODEL = f'meta-llama/Llama-2-{model_size}b-hf'
+        # if model_type == 'chat':
+        #     MODEL = f'meta-llama/Llama-2-{model_size}b-chat-hf'
+        # else:
+        MODEL = f'meta-llama/Llama-2-{model_size}b-hf'
         self.model_name = MODEL
         
         self.client = openai.OpenAI(
@@ -97,6 +97,7 @@ class LLamaV2:
         response = [res.strip() for res in response if res != ''][0]
         response = response.split(split_by)[0].strip()
         response = response.split('\n')[0].strip()
+
         return [response]
 
 
