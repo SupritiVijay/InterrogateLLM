@@ -106,6 +106,7 @@ class ModelPipe:
         print(answer_question_prompt)
         
         res = reconstruct_pool(self.reconstruction_models, answer_question_prompt, temperatures)
+        print(res)
         return res
 
     def model_run(self, save_path='.'):
@@ -117,6 +118,7 @@ class ModelPipe:
         prompt_prefix = question_answer_instructions + self.create_few_shot_prompt(few_shot_examples)
         # create inverse prompt prefix (instructions + few shot examples) for predicting questions from the answer (reconstruction step)
         inverse_prompt_prefix = self.create_few_shot_prompt(few_shot_examples, inverse=True)
+        print(inverse_prompt_prefix, '\n', prompt_prefix)
 
         results = []
         index = 0
