@@ -96,7 +96,7 @@ class LLamaV2:
         response = decoded.strip().split(prompt)
         response = [res.strip() for res in response if res != ''][0]
         response = response.split(split_by)[0].strip()
-        response = response.split('\n')[0].strip()
+        # response = response.split('\n')[0].strip()
 
         return [response]
 
