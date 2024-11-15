@@ -13,9 +13,6 @@ from sentence_transformers import util
 def question_pred(model, prompt, model_name, temperatures):
     res = []
     for temp in temperatures:
-        print('\n\n --------- PROMPT-------\n \n')
-        print(prompt)
-        print('\n\n --------- PROMPT END-------\n \n')
         response = model.submit_request(prompt, temperature=temp, split_by='Answer:')
         response = [res for res in response if res != '']
         response = ', '.join(response)
@@ -108,6 +105,9 @@ class ModelPipe:
         answer_question_prompt = answer_question_instructions + inverse_prompt_prefix + 'Answer: ' + predicted_answer + '\n' + 'Question: '
         
         res = reconstruct_pool(self.reconstruction_models, answer_question_prompt, temperatures)
+        print("-----RESPONSE----")
+        print(res)
+        print("-----RESPONSE END----")
         return res
 
     def model_run(self, save_path='.'):
