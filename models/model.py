@@ -101,7 +101,7 @@ class ModelPipe:
 
 
     def reconstruct_question(self, predicted_answer, inverse_prompt_prefix , temperatures):
-        answer_question_instructions = 'You are not a CHAT MODEL, you are a TEXT GENERATION MODEL! Behave like one! Follow the format below, and please only predict the question that corresponds to the last answer. DO NOT BEGIN STRING WITH \"here\'s what...\" or gibberish just directly output the question as is without useless tokens\n\n'
+        answer_question_instructions = 'You are a TEXT GENERATION MODEL. Do not act like a chat model or add filler text. Follow the format below, and please only predict the question that corresponds to the last answer. Directly and solely output the question without any additional tokens, phrases, or commentary. \n\n'
         answer_question_prompt = answer_question_instructions + inverse_prompt_prefix + 'Answer: ' + predicted_answer + '\n' + 'Question: '
         
         res = reconstruct_pool(self.reconstruction_models, answer_question_prompt, temperatures)
@@ -114,7 +114,7 @@ class ModelPipe:
         # create few shot prompt according to the few shot examples of the dataset
         few_shot_examples = self.few_shot_examples()
         # create instructions for the model
-        question_answer_instructions = 'You are not a CHAT MODEL, you are a TEXT GENERATION MODEL! Behave like one! Follow the format below, and please only predict the answer that corresponds to the last question.  DO NOT BEGIN STRING WITH \"here\'s what...\" or gibberish just directly output the question as is without useless tokens\n\n'
+        question_answer_instructions = 'Follow the format below, and please only predict the answer that corresponds to the last question.  DO NOT BEGIN STRING WITH \"here\'s what...\" or gibberish just directly output the question as is without useless tokens\n\n'
         # prompt prefix (instructions + few shot examples)
         prompt_prefix = question_answer_instructions + self.create_few_shot_prompt(few_shot_examples)
 
