@@ -105,6 +105,9 @@ class ModelPipe:
         answer_question_prompt = answer_question_instructions + inverse_prompt_prefix + 'Answer: ' + predicted_answer + '\n' + 'Question: '
         
         res = reconstruct_pool(self.reconstruction_models, answer_question_prompt, temperatures)
+        print("-----RESPONSE----")
+        print(res)
+        print("-----RESPONSE END----")
         return res
 
     def model_run(self, save_path='.'):
