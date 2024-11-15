@@ -1,12 +1,3 @@
-# InterrogateLLM - Hallucination Detection
-[![arxiv](https://img.shields.io/badge/arXiv-2403.02889-b31b1b)](https://arxiv.org/abs/2403.02889)
-
-This repository contains the code implementation of the InterrogateLLM method as described in the paper "InterrogateLLM: Zero-Resource Hallucination Detection in LLM-Generated Answers". 
-The InterrogateLLM method is designed to detect hallucinations in large language models.
-- Project page for the paper "[InterrogateLLM: Zero-Resource Hallucination Detection in LLM-Generated Answers](https://arxiv.org/abs/2403.02889)"
-  
-![InterrogateLLM Logo](figure/method.png)
-
 ## Requirements
 - Python 3.x
 - Required Python packages can be installed via `pip install -r requirements.txt`
