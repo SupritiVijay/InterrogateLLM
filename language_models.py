@@ -66,7 +66,7 @@ class LLamaV2:
             MODEL = f'meta-llama/Llama-2-{model_size}b-chat-hf'
         else:
             MODEL = f'meta-llama/Llama-2-{model_size}b-hf'
-        self.model_name = MODEL
+        self.model_name = 'meta-llama/Llama-3.2-3B-Instruct-Turbo'
         
         self.client = openai.OpenAI(
             api_key="TOGETHER_API_KEY",
